@@ -23,7 +23,7 @@ class DataResource(Resource):
             #print(type(key))
             result = subprocess.run(["gpio", "read", key], capture_output=True, text=True)
             result = result.stdout.strip()
-            return {key: result}
+            return {"value": result}
         else:
             return {"error": "Key not found"}, 404
 
@@ -34,7 +34,7 @@ class DataResource(Resource):
             #print(type(value))
             result = subprocess.run(["gpio", "write", key, value], capture_output=True, text=True)
             result = result.stdout.strip()
-            return {key: value}
+            return {"value": value}
         else:
             return {"error": "Missing value parameter"}, 400
 
